@@ -21,4 +21,5 @@ public class AnimationStrings
     internal static string spellSlot1Trigger = "spellSlot1";
     internal static string shockwaveTrigger = "shockwave";
     internal static string isClimbing = "isClimbing";
+    internal static string isClimbingDown = "isClimbingDown";
 }

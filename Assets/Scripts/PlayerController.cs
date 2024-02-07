@@ -16,8 +16,6 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
 
-    public Effector2D effector;
-
     public float jumpImpulse = 5.4f;
     public bool CanMove { get 
         {
@@ -132,7 +130,7 @@ public class PlayerController : MonoBehaviour
         {
             IsMoving = false;
         }
-    }
+    } 
 
     public void OnJump(InputAction.CallbackContext context)
     {
@@ -181,6 +179,7 @@ public class PlayerController : MonoBehaviour
             //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), true);
 
         }
-        
     }
+
+
 }
