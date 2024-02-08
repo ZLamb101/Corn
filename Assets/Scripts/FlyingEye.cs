@@ -1,48 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Damageable))]
-public class FlyingEye : MonoBehaviour
+public class FlyingEye : Enemy
 {
-    public float flightSpeed = 1.5f;
     public List<Transform> waypoints;
 
     Transform nextWaypoint;
     int waypointNum = 0;
 
-    Rigidbody2D rb;
-    Animator animator;
-    Damageable damageable;
     public float waypointReachedDistance = 0.1f;
     public Collider2D deathCollider;
-
-    public ItemPickup[] itemDrops;
-
-    public bool CanMove
-    { 
-        get 
-        { 
-            return animator.GetBool(AnimationStrings.canMove);
-        } 
-    }
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        damageable = GetComponent<Damageable>();
-    }
 
     private void Start()
     {
         nextWaypoint = waypoints[waypointNum];
-    }
-
-    private void OnEnable()
-    {
-        damageable.damageableDeath.AddListener(OnDeath);
     }
 
     private void FixedUpdate()
@@ -83,20 +57,12 @@ public class FlyingEye : MonoBehaviour
         }
     }
 
-    public void OnHit(int damage, Vector2 knockback)
+    public override void OnDeath()
     {
-        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
-    }
-
-    public void OnDeath()
-    {
+        base.OnDeath();
         rb.gravityScale = 2;
         rb.velocity = new Vector2(0, rb.velocity.y);
         deathCollider.enabled = true;
-        ItemDrop();
-        damageable.damageableDeath.RemoveListener(OnDeath);
-        Debug.Log("Death here");
-
     }
 
     public void Flight()
@@ -109,7 +75,7 @@ public class FlyingEye : MonoBehaviour
 
 
 
-        rb.velocity = directionToWaypoint * flightSpeed;
+        rb.velocity = directionToWaypoint * moveSpeed;
         UpdateDirection();
 
         // See if we need to switch waypoints
@@ -122,14 +88,6 @@ public class FlyingEye : MonoBehaviour
             }
 
             nextWaypoint = waypoints[waypointNum];
-        }
-    }
-
-    private void ItemDrop()
-    {
-        foreach (ItemPickup item in itemDrops)
-        {
-            Instantiate(item, transform.position, Quaternion.identity);
         }
     }
 }

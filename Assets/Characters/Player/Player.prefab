@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 4122530942769659307}
   - component: {fileID: 1016786703844510751}
   - component: {fileID: 7293394980731353535}
+  - component: {fileID: 2078859823596912024}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -540,6 +541,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c5640882-993e-4b33-abdb-8145b01a96df
     m_ActionName: Player/Down[/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8ad6df10-8b48-412f-87b5-96bea3632970
+    m_ActionName: Player/Climb[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -686,3 +691,19 @@ MonoBehaviour:
   LaunchPoint: {fileID: 8766837524399148679}
   projectilePrefab: {fileID: 781082848961445366, guid: 2c9b9256a4baa36468a39c480843ea0e,
     type: 3}
+--- !u!114 &2078859823596912024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7898001557041317330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b3e6cbdbd4eaf4ba598b329a3f3b6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  currentXp: 20
+  requiredXp: 100
+  XpBar: {fileID: 0}

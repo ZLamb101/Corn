@@ -3,26 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(TouchingDirections), typeof(Rigidbody2D), typeof(Damageable))]
-public class Fox : MonoBehaviour
+[RequireComponent(typeof(TouchingDirections))]
+public class Fox : Enemy
 {
-    public float walkSpeed = 1.5f;
     public DetectionZone attackZone;
     public DetectionZone cliffDetectionZone;
 
-    Rigidbody2D rb;
     TouchingDirections touchingDirections;
-    Animator animator;
-    Damageable damageable;
 
     public enum WalkableDirection { Right, Left }
 
     private WalkableDirection _walkDirection;
     private Vector2 walkDirectionVector = Vector2.right;
-
-    public ItemPickup[] itemDrops;
-
-
 
     public WalkableDirection WalkDirection
     {
@@ -50,24 +42,13 @@ public class Fox : MonoBehaviour
     public bool HasTarget { get { return _hasTarget;  } private set
         {
             _hasTarget = value;
-
         }
     }
 
-    public bool CanMove
-    { 
-        get 
-        { 
-            return animator.GetBool(AnimationStrings.canMove);
-        } 
-    }
-
-    private void Awake()
+    protected override void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        base.Awake();
         touchingDirections = GetComponent<TouchingDirections>();
-        animator = GetComponent<Animator>();
-        damageable = GetComponent<Damageable>();
     }
 
     // Update is called once per frame
@@ -83,10 +64,10 @@ public class Fox : MonoBehaviour
             FlipDirection();
         }
 
-        if(!damageable.LockVelocity) {
+        if(!base.damageable.LockVelocity) {
             if (CanMove && touchingDirections.IsGrounded)
             {
-                rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+                rb.velocity = new Vector2(moveSpeed * walkDirectionVector.x, rb.velocity.y);
             }
             else
             {
@@ -110,35 +91,11 @@ public class Fox : MonoBehaviour
         }
     }
 
-    public void OnHit(int damage, Vector2 knockback)
-    {
-        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
-    }
-
     public void OnCliffDetected()
     {
         if (touchingDirections.IsGrounded)
         {
             FlipDirection();
-        }
-    }
-
-    private void OnEnable()
-    {
-        damageable.damageableDeath.AddListener(OnDeath);
-    }
-
-    public void OnDeath()
-    {
-        ItemDrop();
-        damageable.damageableDeath.RemoveListener(OnDeath);
-    }
-
-    private void ItemDrop() 
-    {
-        foreach(ItemPickup item in itemDrops)
-        {
-            Instantiate(item, transform.position, Quaternion.identity);
         }
     }
 }
