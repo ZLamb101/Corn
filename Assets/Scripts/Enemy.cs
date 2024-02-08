@@ -1,16 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Damageable))]
 public class Enemy : MonoBehaviour
 {
+    public static int timesRespawned =0 ;
+
     public float moveSpeed = 1.5f;
+
+    protected UnityEngine.Object enemyRef;
 
     protected Rigidbody2D rb;
     protected Animator animator;
     protected Damageable damageable;
+
+    public float delayOnRespawn;
 
     public ItemPickup[] itemDrops;
 
@@ -48,13 +55,27 @@ public class Enemy : MonoBehaviour
         ItemDrop();
         damageable.damageableDeath.RemoveListener(OnDeath);
         LevelingManager.Instance.GainExperienceFlatRate(xpValue);
+        Invoke("Respawn", 1);
+        
+        //StartCoroutine("Respawn");
+        Debug.Log("hello world3");
+    }
+
+    private void Respawn()
+    {
+        timesRespawned++;
+        Debug.Log(timesRespawned);
+
+        //Add to the queue for enemy Manager to pickup
+        EnemyManager.enemyToRespawn[enemyRef.name].Add(new Vector2(transform.position.x, transform.position.y));
     }
 
     private void ItemDrop() 
     {
         foreach(ItemPickup item in itemDrops)
         {
-            Instantiate(item, transform.position, Quaternion.identity);
+           var newObject = Instantiate(item, transform.position, Quaternion.identity);
+            newObject.transform.parent = GameObject.Find("LootManager").transform;
         }
     }
 }

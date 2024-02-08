@@ -55,7 +55,7 @@ public class LevelingManager : MonoBehaviour
         float FXP = XpBar.value;
         if(FXP < xpFraction)
         {
-            Debug.Log("AddingXP");
+           // Debug.Log("AddingXP");
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / 4;
             XpBar.value = Mathf.Lerp(FXP, xpFraction, percentComplete);

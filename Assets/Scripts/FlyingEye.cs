@@ -17,6 +17,7 @@ public class FlyingEye : Enemy
     private void Start()
     {
         nextWaypoint = waypoints[waypointNum];
+        enemyRef = Resources.Load("FlyingEye");
     }
 
     private void FixedUpdate()
@@ -68,26 +69,28 @@ public class FlyingEye : Enemy
     public void Flight()
     {
         // Fly to next waypoint
-        Vector2 directionToWaypoint = (nextWaypoint.position - transform.position).normalized;
+        if(nextWaypoint != null) { 
+            Vector2 directionToWaypoint = (nextWaypoint.position - transform.position).normalized;
 
-        //Check if we have reached the waypoint already
-        float distance = Vector2.Distance(nextWaypoint.position, transform.position);
+            //Check if we have reached the waypoint already
+            float distance = Vector2.Distance(nextWaypoint.position, transform.position);
 
 
 
-        rb.velocity = directionToWaypoint * moveSpeed;
-        UpdateDirection();
+            rb.velocity = directionToWaypoint * moveSpeed;
+            UpdateDirection();
 
-        // See if we need to switch waypoints
-        if (distance <= waypointReachedDistance)
-        {
-            waypointNum++;
-            if(waypointNum >= waypoints.Count)
+            // See if we need to switch waypoints
+            if (distance <= waypointReachedDistance)
             {
-                waypointNum = 0;
-            }
+                waypointNum++;
+                if(waypointNum >= waypoints.Count)
+                {
+                    waypointNum = 0;
+                }
 
-            nextWaypoint = waypoints[waypointNum];
+                nextWaypoint = waypoints[waypointNum];
+            }
         }
     }
 }

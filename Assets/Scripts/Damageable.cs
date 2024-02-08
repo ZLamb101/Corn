@@ -142,15 +142,4 @@ public class Damageable : MonoBehaviour
         return false;
     }
 
-    public bool GiveXp(int expGained)
-    {
-        if (IsAlive)
-        {
-            CharacterEvents.characterXpGained.Invoke(gameObject, expGained);
-            return true;
-        }
-
-        return false;
-    }
-
 }

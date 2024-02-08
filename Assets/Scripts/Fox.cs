@@ -49,6 +49,7 @@ public class Fox : Enemy
     {
         base.Awake();
         touchingDirections = GetComponent<TouchingDirections>();
+        enemyRef = Resources.Load("FoxEnemy");
     }
 
     // Update is called once per frame
