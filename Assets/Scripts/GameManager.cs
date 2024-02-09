@@ -9,23 +9,25 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private void Awake()
     {
-       /* if (GameManager.instance != null)
-        {
-            Destroy(gameObject);
-            Destroy(player.gameObject);
-            Destroy(floatingTextManager.gameObject);
-            Destroy(hud);
-            Destroy(menu);
-            return;
-        }
-
-        // Code to Remove all saved Data
-        //PlayerPrefs.DeleteAll();
-        //weaponPrices = new List<int> { 30, 60, 100, 140, 190, 220 };
-
+        _isIdle = false;
         instance = this;
-        SceneManager.sceneLoaded += LoadState;
-        SceneManager.sceneLoaded += OnSceneLoaded;*/
+        /* if (GameManager.instance != null)
+         {
+             Destroy(gameObject);
+             Destroy(player.gameObject);
+             Destroy(floatingTextManager.gameObject);
+             Destroy(hud);
+             Destroy(menu);
+             return;
+         }
+
+         // Code to Remove all saved Data
+         //PlayerPrefs.DeleteAll();
+         //weaponPrices = new List<int> { 30, 60, 100, 140, 190, 220 };
+
+         instance = this;
+         SceneManager.sceneLoaded += LoadState;
+         SceneManager.sceneLoaded += OnSceneLoaded;*/
     }
 
     // Resources
@@ -33,6 +35,18 @@ public class GameManager : MonoBehaviour
 
     //References
 
+    private bool _isIdle;
+
+    public bool IsIdle {  
+        get 
+        { 
+            return _isIdle; 
+        } 
+        set 
+        {
+            _isIdle = value;
+        } 
+    }
 
     public int _gold;
     private int _experience;

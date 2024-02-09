@@ -52,7 +52,7 @@ public class LadderMovement : MonoBehaviour
             {
                 IsClimbing = false;
                 IsClimbingDown = false;
-                rb.gravityScale = 1.5f;
+                rb.gravityScale = 1f;
             }
             
         }
