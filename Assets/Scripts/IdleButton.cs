@@ -24,6 +24,15 @@ public class IdleButton : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (GameManager.instance.IdleChanged)
+        {
+            ToggleIdle();
+            GameManager.instance.IdleChanged = false;
+        }
+    }
+
     public void ToggleIdle()
     {
         GameManager.instance.IsIdle = !GameManager.instance.IsIdle;

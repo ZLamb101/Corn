@@ -28,11 +28,14 @@ public class EnemyManager : MonoBehaviour
     {
         // Check each dictionary value for respawn
         // Respawn(Dictionary)
-        foreach(var enemy in enemyToRespawn) {
-            var type = enemy.Key;
-            EnemyRespawn(type);
+        if (enemyToRespawn != null)
+        {
+            foreach (var enemy in enemyToRespawn)
+            {
+                var type = enemy.Key;
+                EnemyRespawn(type);
+            }
         }
-       ;
     }
 
 
@@ -52,8 +55,6 @@ public class EnemyManager : MonoBehaviour
                 // TODO Find a way to assign waypoints
                 enemyClone.transform.position = new Vector3(position.x, position.y + 3, 0);
             }
-
-            Debug.Log("remove one from list"); 
         }
         list.Clear();
         // Create text at character hit

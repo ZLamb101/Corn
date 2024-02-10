@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class OneWayPlatform : MonoBehaviour
 {
-    private PlatformEffector2D effector;
+    public static OneWayPlatform instance;
+    public PlatformEffector2D effector;
 
     public float waitTime;
     private bool _playerOnPlatform;
 
     private void Awake()
     {
+        instance = this;
         effector = GetComponent<PlatformEffector2D>();
         waitTime = 0.5f;
     }
@@ -19,18 +21,17 @@ public class OneWayPlatform : MonoBehaviour
     {
         if(_playerOnPlatform && Input.GetAxisRaw("Vertical") < 0)
         {
-            effector.useColliderMask = false;
-            StartCoroutine(EnableCollider());
+            StartCoroutine(FallThroughCollider());
         }
     }
 
-    private IEnumerator EnableCollider()
+    public IEnumerator FallThroughCollider()
     {
+        effector.useColliderMask = false;
         yield return new WaitForSeconds(waitTime);
         effector.useColliderMask = true;
     }
 
-    // Update is called once per frame
     public void DisableCollision(Collision2D other, bool value)
     {
         var player = other.gameObject.GetComponent<PlayerController>();

@@ -115,8 +115,8 @@ public class Damageable : MonoBehaviour
             isInvincible = true;
 
             //Notify other subscribed components that the damageable was hit to handle the knockback and such
-            animator.SetTrigger(AnimationStrings.hitTrigger);
-            LockVelocity = true;
+           // animator.SetTrigger(AnimationStrings.hitTrigger);
+            //LockVelocity = true;
             damageableHit?.Invoke(damage, knockback);
             CharacterEvents.characterDamaged.Invoke(gameObject, damage);
 

@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
          //PlayerPrefs.DeleteAll();
          //weaponPrices = new List<int> { 30, 60, 100, 140, 190, 220 };
 
-         instance = this;
          SceneManager.sceneLoaded += LoadState;
          SceneManager.sceneLoaded += OnSceneLoaded;*/
     }
@@ -34,6 +33,8 @@ public class GameManager : MonoBehaviour
 
 
     //References
+
+    public bool IdleChanged = false;
 
     private bool _isIdle;
 

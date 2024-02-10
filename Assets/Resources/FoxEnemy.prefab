@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 10
-  knockback: {x: 5, y: 2}
+  knockback: {x: 0, y: 0}
 --- !u!1 &3881361059612831806
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,11 +365,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce0c424b9fdcd9d499992e33f95def9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 1
-  attackZone: {fileID: 5655308447632965904}
-  cliffDetectionZone: {fileID: 6141924508690456086}
+  moveSpeed: 1.5
+  delayOnRespawn: 0
   itemDrops:
   - {fileID: 3904653236891442900, guid: 1583bae5a1d8a8f4d8f3ec10d40a11d9, type: 3}
+  xpValue: 30
+  attackZone: {fileID: 5655308447632965904}
+  cliffDetectionZone: {fileID: 6141924508690456086}
   _hasTarget: 0
 --- !u!114 &3172704227648174838
 MonoBehaviour:

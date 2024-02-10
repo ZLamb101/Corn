@@ -7,8 +7,9 @@ using static UnityEngine.Rendering.DebugUI;
 public class TouchingDirections : MonoBehaviour
 {
     public ContactFilter2D castFilter;
+    public ContactFilter2D groundCastFilter;
     public float groundDistance = 0.05f;
-    public float wallDistance = 0.2f;
+    public float wallDistance = 0.1f;
     public float ceilingDistance = 0.05f;
 
     CapsuleCollider2D touchingCol;
@@ -24,7 +25,8 @@ public class TouchingDirections : MonoBehaviour
     public bool IsGrounded { get
         {
             return _isGrounded;
-        } private set
+        } 
+        private set
         {
             _isGrounded = value;
             animator.SetBool(AnimationStrings.IsGrounded, value);
@@ -48,16 +50,13 @@ public class TouchingDirections : MonoBehaviour
      [SerializeField]
     private bool _isOnCeiling;
    
-
-
     public bool IsOnCeiling { get
         {
             return _isOnCeiling;
         } private set
         {
              _isOnCeiling = value;
-             animator.SetBool(AnimationStrings.IsOnCeiling, value);
-               
+             animator.SetBool(AnimationStrings.IsOnCeiling, value);     
         } 
     }
 
@@ -71,27 +70,8 @@ public class TouchingDirections : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
- 
-            IsOnWall = touchingCol.Cast(wallCheckDirection, castFilter, wallHits, wallDistance) > 0;
-            IsOnCeiling = touchingCol.Cast(Vector2.up, castFilter, ceilingHits, ceilingDistance) > 0;
-
-        IsGrounded = touchingCol.Cast(Vector2.down, castFilter, groundHits, groundDistance) > 0;
-
-
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("OneWayPlatform"))
-        {
- 
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("OneWayPlatform"))
-        {
-        }
+        IsOnWall = touchingCol.Cast(wallCheckDirection, castFilter, wallHits, wallDistance) > 0;
+        IsOnCeiling = touchingCol.Cast(Vector2.up, castFilter, ceilingHits, ceilingDistance) > 0;
+        IsGrounded = touchingCol.Cast(Vector2.down, groundCastFilter, groundHits, groundDistance) > 0;
     }
 }

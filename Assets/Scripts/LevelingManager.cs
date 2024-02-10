@@ -44,8 +44,7 @@ public class LevelingManager : MonoBehaviour
         if (isUpdatingXp)
         UpdateXpUI();
         if (Input.GetKeyDown(KeyCode.Equals)) {
-            GainExperienceFlatRate(20);
-           
+            GainExperienceFlatRate(20); 
         }
     }
 
@@ -55,14 +54,13 @@ public class LevelingManager : MonoBehaviour
         float FXP = XpBar.value;
         if(FXP < xpFraction)
         {
-           // Debug.Log("AddingXP");
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / 4;
             XpBar.value = Mathf.Lerp(FXP, xpFraction, percentComplete);
             ExperienceBarText.text = "EXP "+ currentXp.ToString() + " / " + requiredXp.ToString();
             if (lerpTimer >= 0.6f)
             {
-                Debug.Log("Xpbar Value : " + XpBar.value + " , Curent XP : " + currentXp + " , Required Xp : " + requiredXp);
+                //Debug.Log("Xpbar Value : " + XpBar.value + " , Curent XP : " + currentXp + " , Required Xp : " + requiredXp);
                 if (currentXp >= requiredXp)
                 {
                     LevelUp();
@@ -82,7 +80,7 @@ public class LevelingManager : MonoBehaviour
         lerpTimer = 0f;
         isUpdatingXp = true;
         UpdateXpUI();
-        Debug.Log("Xpbar Value : " + XpBar.value + " , Curent XP : " + currentXp + " , Required Xp : " + requiredXp);
+        //Debug.Log("Xpbar Value : " + XpBar.value + " , Curent XP : " + currentXp + " , Required Xp : " + requiredXp);
     }
 
     public void LevelUp()

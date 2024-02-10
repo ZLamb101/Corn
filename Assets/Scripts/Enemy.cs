@@ -58,14 +58,12 @@ public class Enemy : MonoBehaviour
         Invoke("Respawn", 1);
         
         //StartCoroutine("Respawn");
-        Debug.Log("hello world3");
     }
 
     private void Respawn()
     {
         timesRespawned++;
         Debug.Log(timesRespawned);
-
         //Add to the queue for enemy Manager to pickup
         EnemyManager.enemyToRespawn[enemyRef.name].Add(new Vector2(transform.position.x, transform.position.y));
     }
