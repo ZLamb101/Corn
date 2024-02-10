@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     public Vector2 knockback = new Vector2 (0,0);
 
     Rigidbody2D rb;
+    private float lifespan = 3f; // Lifespan of the projectile in seconds
 
     private void Awake()
     {
@@ -20,6 +21,8 @@ public class Projectile : MonoBehaviour
     {
         // If you want the projectile to be effected by gravity by default, make it dynamic mode rigidbody
         rb.velocity = new Vector2(moveSpeed.x * transform.localScale.x, moveSpeed.y);
+
+        Destroy(gameObject, lifespan);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
