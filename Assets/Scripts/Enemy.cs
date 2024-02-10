@@ -1,13 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.UIElements;
+using Random = System.Random;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Damageable))]
 public class Enemy : MonoBehaviour
 {
     public static int timesRespawned =0 ;
+    private Random rnd = new Random();
 
     public float moveSpeed = 1.5f;
 
@@ -16,12 +20,40 @@ public class Enemy : MonoBehaviour
     protected Rigidbody2D rb;
     protected Animator animator;
     protected Damageable damageable;
+    SpriteRenderer spriteRenderer;
 
     public float delayOnRespawn;
 
     public ItemPickup[] itemDrops;
-
     public int xpValue = 30;
+    
+    private WalkableDirection _walkDirection;
+    protected Vector2 walkDirectionVector = Vector2.right;
+    public enum WalkableDirection { Right, Left }
+
+    public WalkableDirection WalkDirection
+    {
+        get { return _walkDirection; }
+        set
+        {
+            if (_walkDirection != value)
+            {
+                //Direction Flipped
+                gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y);
+
+                if (value == WalkableDirection.Right)
+                {
+                    walkDirectionVector = Vector2.right;
+
+                }
+                else if (value == WalkableDirection.Left)
+                {
+                    walkDirectionVector = Vector2.left;
+                }
+            }
+            _walkDirection = value;
+        }
+    }
 
     public bool CanMove
     { 
@@ -33,12 +65,11 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Awake()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
     }
-
-
 
     public void OnHit(int damage, Vector2 knockback)
     {
@@ -55,17 +86,36 @@ public class Enemy : MonoBehaviour
         ItemDrop();
         damageable.damageableDeath.RemoveListener(OnDeath);
         LevelingManager.Instance.GainExperienceFlatRate(xpValue);
-        Invoke("Respawn", 1);
-        
-        //StartCoroutine("Respawn");
+        Invoke("Respawn", delayOnRespawn);
+        gameObject.SetActive(false);
     }
 
     private void Respawn()
     {
         timesRespawned++;
         Debug.Log(timesRespawned);
+
+        gameObject.SetActive(true);
+        damageable.Health = damageable.MaxHealth;
+        damageable.IsAlive = true;
+        spriteRenderer.color = new Color(255,255,255,255);
+        
+        if (rnd.Next(2) == 1)
+        {
+            WalkDirection = WalkableDirection.Left;
+        }
+        else
+        {
+            WalkDirection = WalkableDirection.Right;
+        }
+
+        //GameObject enemyClone = (GameObject)Instantiate(enemyRef);
+        //enemyClone.transform.position = transform.position;
+        //enemyClone.transform.parent = GameObject.Find("EnemyManager").transform;
+       // Destroy(gameObject);
+
         //Add to the queue for enemy Manager to pickup
-        EnemyManager.enemyToRespawn[enemyRef.name].Add(new Vector2(transform.position.x, transform.position.y));
+        //EnemyManager.enemyToRespawn[enemyRef.name].Add(new Vector2(transform.position.x, transform.position.y));
     }
 
     private void ItemDrop() 

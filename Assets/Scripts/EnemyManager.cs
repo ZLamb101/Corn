@@ -28,14 +28,14 @@ public class EnemyManager : MonoBehaviour
     {
         // Check each dictionary value for respawn
         // Respawn(Dictionary)
-        if (enemyToRespawn != null)
+        /*if (enemyToRespawn != null)
         {
             foreach (var enemy in enemyToRespawn)
             {
                 var type = enemy.Key;
                 EnemyRespawn(type);
             }
-        }
+        }*/
     }
 
 
@@ -58,16 +58,5 @@ public class EnemyManager : MonoBehaviour
         }
         list.Clear();
         // Create text at character hit
-    }
-
-    public void RespawnDelay(string enemyType, Vector2 position)
-    {
-        GameObject enemyClone = Instantiate((GameObject)Resources.Load(enemyType), new Vector3(position.x, position.y, 0), Quaternion.identity);
-        enemyClone.transform.parent = GameObject.Find("EnemyManager").transform;
-        if (enemyType == "FlyingEye")
-        {
-            //Find a way to assign waypoints
-            enemyClone.transform.position = new Vector3(position.x, position.y + 3, 0);
-        }
     }
 }

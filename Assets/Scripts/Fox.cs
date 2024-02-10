@@ -11,33 +11,6 @@ public class Fox : Enemy
 
     TouchingDirections touchingDirections;
 
-    public enum WalkableDirection { Right, Left }
-
-    private WalkableDirection _walkDirection;
-    private Vector2 walkDirectionVector = Vector2.right;
-
-    public WalkableDirection WalkDirection
-    {
-        get { return _walkDirection; }
-        set { 
-             if( _walkDirection != value)
-            {
-                //Direction Flipped
-                gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y);
-
-                if(value == WalkableDirection.Right)
-                {
-                    walkDirectionVector = Vector2.right;
-
-                } else if (value == WalkableDirection.Left)
-                {
-                    walkDirectionVector = Vector2.left;
-                }
-            }   
-            
-            _walkDirection = value; }
-    }
-
     public bool _hasTarget = false;
     public bool HasTarget { get { return _hasTarget;  } private set
         {
@@ -50,6 +23,11 @@ public class Fox : Enemy
         base.Awake();
         touchingDirections = GetComponent<TouchingDirections>();
         enemyRef = Resources.Load("FoxEnemy");
+    }
+
+    private void Start()
+    {
+        delayOnRespawn = 15;
     }
 
     // Update is called once per frame
@@ -68,7 +46,7 @@ public class Fox : Enemy
         if(!base.damageable.LockVelocity) {
             if (CanMove && touchingDirections.IsGrounded)
             {
-                rb.velocity = new Vector2(moveSpeed * walkDirectionVector.x, rb.velocity.y);
+                rb.velocity = new Vector2(moveSpeed * base.walkDirectionVector.x, rb.velocity.y);
             }
             else
             {
