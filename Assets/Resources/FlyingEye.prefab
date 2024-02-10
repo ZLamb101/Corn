@@ -491,6 +491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1.5
   delayOnRespawn: 0
+  dropTable: {fileID: 11400000, guid: d9e286368d5d0f64cb25563604bdbd84, type: 2}
   itemDrops:
   - {fileID: 3904653236891442900, guid: 1583bae5a1d8a8f4d8f3ec10d40a11d9, type: 3}
   xpValue: 30

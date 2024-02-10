@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
 
     public float delayOnRespawn;
 
-    public ItemPickup[] itemDrops;
+    public DropTable dropTable; 
     public int xpValue = 30;
     
     private WalkableDirection _walkDirection;
@@ -108,22 +108,19 @@ public class Enemy : MonoBehaviour
         {
             WalkDirection = WalkableDirection.Right;
         }
-
-        //GameObject enemyClone = (GameObject)Instantiate(enemyRef);
-        //enemyClone.transform.position = transform.position;
-        //enemyClone.transform.parent = GameObject.Find("EnemyManager").transform;
-       // Destroy(gameObject);
-
-        //Add to the queue for enemy Manager to pickup
-        //EnemyManager.enemyToRespawn[enemyRef.name].Add(new Vector2(transform.position.x, transform.position.y));
     }
 
     private void ItemDrop() 
     {
-        foreach(ItemPickup item in itemDrops)
+        if (dropTable != null)
         {
-           var newObject = Instantiate(item, transform.position, Quaternion.identity);
-            newObject.transform.parent = GameObject.Find("LootManager").transform;
+            foreach (var entry in dropTable.entries)
+            {
+                if (UnityEngine.Random.Range(0f, 1f) <= entry.dropRate)
+                {
+                    Instantiate(entry.item, transform.position, Quaternion.identity);
+                }
+            }
         }
     }
 }
