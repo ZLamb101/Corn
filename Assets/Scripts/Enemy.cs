@@ -98,6 +98,7 @@ public class Enemy : MonoBehaviour
         gameObject.SetActive(true);
         damageable.Health = damageable.MaxHealth;
         damageable.IsAlive = true;
+        
         spriteRenderer.color = new Color(255,255,255,255);
         
         if (rnd.Next(2) == 1)
