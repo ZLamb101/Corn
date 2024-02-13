@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Inventory.Model;
 
 public class ItemPickupManager : MonoBehaviour
 {
@@ -11,9 +12,29 @@ public class ItemPickupManager : MonoBehaviour
     private float fadeTimer = 0.0f;
     private float riseSpeed = 1.5f;
 
+    [SerializeField]
+    private InventorySO inventoryData;
+
     void Start()
     {
         mainCamera = Camera.main;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        ItemDrop item = other.GetComponent<ItemDrop>();
+        if (item != null)
+        {
+            int remainder = inventoryData.AddItem(item.InventoryItem, item.Quantity);
+            if (remainder == 0)
+            {
+                item.DestroyItem();
+            }
+            else
+            {
+                item.Quantity = remainder;
+            }
+        }
     }
 
     void Update()
@@ -33,21 +54,6 @@ public class ItemPickupManager : MonoBehaviour
             FadeOutObjects();
         }
     }
-
-    /*   List<Rigidbody2D> GetObjectsUnderCursor()
-       {
-           List<Rigidbody2D> newSelectedObjects = new List<Rigidbody2D>();
-           RaycastHit2D[] hits = Physics2D.RaycastAll(mainCamera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-           foreach (RaycastHit2D hit in hits)
-           {
-               if (hit.collider != null && hit.collider.GetComponent<Rigidbody2D>() != null && hit.collider.CompareTag("Drops"))
-               {
-                   Rigidbody2D obj = hit.collider.GetComponent<Rigidbody2D>();
-                   newSelectedObjects.Add(obj);
-               }
-           }
-           return newSelectedObjects;
-       }*/
 
     List<Rigidbody2D> GetDropsInPlayerHitbox()
     {
@@ -95,4 +101,6 @@ public class ItemPickupManager : MonoBehaviour
             fadeTimer = 0.0f;
         }
     }
+
+   
 }

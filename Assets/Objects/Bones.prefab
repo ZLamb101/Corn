@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3137963990424166714}
   - component: {fileID: 3895195311419350578}
   - component: {fileID: 5360338408934174182}
-  - component: {fileID: 3904653236891442900}
+  - component: {fileID: 8873553285972731588}
   m_Layer: 24
   m_Name: Bones
   m_TagString: Drops
@@ -160,7 +160,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.37}
   m_EdgeRadius: 0
---- !u!114 &3904653236891442900
+--- !u!114 &8873553285972731588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,6 +169,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6092356922798182026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e82c545b42d89294fa42281253bb0912, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d7a27e75650cd043aa32d72fb95d710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <InventoryItem>k__BackingField: {fileID: 11400000, guid: 690c723f7158b484ebea78dcc45db33f,
+    type: 2}
+  duration: 0.3
