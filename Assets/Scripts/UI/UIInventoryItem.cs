@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -26,7 +25,7 @@ namespace Inventory.UI
 
         private bool empty = true;
 
-        private void Awake()
+        public void Awake()
         {
             ResetData();
             Deselect();
@@ -34,6 +33,7 @@ namespace Inventory.UI
 
         public void ResetData()
         {
+
             itemImage.gameObject.SetActive(false);
             empty = true;
         }
@@ -89,12 +89,12 @@ namespace Inventory.UI
 
         void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
         {
-            OnPointerEnter?.Invoke(this);
+            //OnPointerEnter?.Invoke(this);
         }
 
         void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
         {
-            OnPointerExit?.Invoke(this);
+            //OnPointerExit?.Invoke(this);
         }
 
         //Has to exist because Unity

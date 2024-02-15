@@ -13404,7 +13404,7 @@ PrefabInstance:
     - target: {fileID: 317034007751637654, guid: b33a9f8ca2db4f149bd92ad8cc166922,
         type: 3}
       propertyPath: initialItems.Array.data[1].quantity
-      value: 50
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 317034007751637654, guid: b33a9f8ca2db4f149bd92ad8cc166922,
         type: 3}

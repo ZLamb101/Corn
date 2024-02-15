@@ -67,6 +67,7 @@ public class ItemPickupManager : MonoBehaviour
             Rigidbody2D obj = collider.GetComponent<Rigidbody2D>();
             if (obj != null)
             {
+
                 newSelectedObjects.Add(obj);
             }
         }
@@ -80,9 +81,10 @@ public class ItemPickupManager : MonoBehaviour
 
         foreach (Rigidbody2D selectedObject in selectedObjects)
         {
-            Color objectColor = selectedObject.GetComponent<SpriteRenderer>().color;
+            SpriteRenderer spriteRenderer = selectedObject.GetComponent<SpriteRenderer>();
+            Color objectColor = spriteRenderer.color;
             objectColor.a = alpha;
-            selectedObject.GetComponent<SpriteRenderer>().color = objectColor;
+            spriteRenderer.color = objectColor;
 
             // Rising effect
             Vector2 newPosition = selectedObject.transform.position;
@@ -94,7 +96,26 @@ public class ItemPickupManager : MonoBehaviour
         {
             foreach (Rigidbody2D selectedObject in selectedObjects)
             {
-                Destroy(selectedObject.gameObject);
+                ItemDrop item = selectedObject.GetComponent<ItemDrop>();
+                if (item != null)
+                {
+                    int remainder = inventoryData.AddItem(item.InventoryItem, item.Quantity);
+                    if (remainder == 0)
+                    {
+                        Debug.Log("Destroying item");
+                        item.DestroyItem();
+                    }
+                    else
+                    {
+                        Debug.Log("Remainder: " + remainder);
+                        item.Quantity = remainder;
+
+                        SpriteRenderer spriteRenderer = selectedObject.GetComponent<SpriteRenderer>();
+                        Color objectColor = spriteRenderer.color;
+                        objectColor.a = 1.0f;
+                        spriteRenderer.color = objectColor;
+                    }
+                }
             }
             selectedObjects.Clear();
             isFadingOut = false;
