@@ -764,4 +764,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 0}
-  inventorySize: 10
+  inventoryData: {fileID: 0}
+  initialItems: []

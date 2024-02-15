@@ -15,8 +15,6 @@ MonoBehaviour:
   inventoryItems:
   - quantity: 5
     item: {fileID: 11400000, guid: 5bb70621d577a6c48bff32b011309337, type: 2}
-  - quantity: 30
-    item: {fileID: 11400000, guid: 690c723f7158b484ebea78dcc45db33f, type: 2}
   - quantity: 0
     item: {fileID: 0}
-  <Size>k__BackingField: 3
+  <Size>k__BackingField: 2
