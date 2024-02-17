@@ -15,7 +15,7 @@ namespace Inventory.Model
 
         public AudioClip actionSFK { get; private set; }
 
-        public bool PerformAction(GameObject character)
+        public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
             bool consumedItem = false;
             foreach (ModifierData data in modiferData)
@@ -36,7 +36,7 @@ namespace Inventory.Model
     {
         public string ActionName { get; }
         public AudioClip actionSFK { get; }
-        bool PerformAction(GameObject target);
+        bool PerformAction(GameObject target, List<ItemParameter> itemState);
     }
 
     [Serializable]

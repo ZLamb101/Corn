@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Inventory.Model
 {
-    [CreateAssetMenu(fileName = "New Equippable Item", menuName = "Inventory/Equippable Item")]
+    [CreateAssetMenu]
     public class EquippableItemSO : ItemSO, IDestroyableItem, IItemAction
     {
-        public enum EquipmentSlot
+       /* public enum EquipmentSlot
         {
             Head,
             Chest,
@@ -19,25 +19,21 @@ namespace Inventory.Model
             Accessory
         }
 
-        public EquipmentSlot equipmentSlot;
-
-        public void DestroyItem()
-        {
-            Debug.Log("Destroying " + itemName);
-        }
-
-        public void UseItem()
-        {
-            Debug.Log("Using " + itemName);
-        }
+        public EquipmentSlot equipmentSlot;*/
  
         public string ActionName => "Equip";
 
         public AudioClip actionSFK { get; private set; }
 
-        public bool PerformAction(GameObject target)
+        public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
-            throw new System.NotImplementedException();
+            AgentWeapon weaponSystem = character.GetComponent<AgentWeapon>();
+            if (weaponSystem == null)
+            {
+                return false;
+            }
+            weaponSystem.SetWeapon(this, itemState == null ? DefaultParametersList : itemState);
+            return true;
         }
     }
 }

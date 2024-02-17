@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 
 namespace Inventory
 {
@@ -68,7 +69,8 @@ namespace Inventory
             IItemAction itemAction = inventoryItem.item as IItemAction;
             if(itemAction != null)
             {
-                if (itemAction.PerformAction(gameObject))
+               // Add a way to not delete Equipable Gear on equip
+                if (itemAction.PerformAction(gameObject, inventoryItem.itemState))
                 {
                     IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
                     if (destroyableItem != null)
@@ -100,8 +102,26 @@ namespace Inventory
                 return;
             }
             ItemSO item = inventoryItem.item;
+            string description = PrepareDescription(inventoryItem);
+            inventoryUI.UpdateDescription(itemIndex, item.Icon, item.name, description);
+        }
 
-            inventoryUI.UpdateDescription(itemIndex, item.Icon, item.name, item.Description);
+        public string PrepareDescription(InventoryItem inventoryItem)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(inventoryItem.item.Description);
+            sb.AppendLine();
+            for(int i = 0; i < inventoryItem.itemState.Count; i++)
+            {
+                sb.Append(inventoryItem.itemState[i].itemParameter.ParameterName);
+                sb.Append(" : ");
+                sb.Append(inventoryItem.itemState[i].value);
+                sb.Append(" / ");
+                sb.Append(inventoryItem.item.DefaultParametersList[i].value);
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
         }
 
         public void ToggleInventoryDisplay()
