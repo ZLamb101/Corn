@@ -16,7 +16,7 @@ public class ItemDrop : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = InventoryItem.Icon;
+        //GetComponent<SpriteRenderer>().sprite = InventoryItem.Icon;
     }
 
     internal void DestroyItem()

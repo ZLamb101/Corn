@@ -139,6 +139,26 @@ namespace Inventory.Model
         {
             OnInventoryChanged?.Invoke(GetCurrentInventoryState());
         }
+
+        public void RemoveItem(int itemIndex, int amount)
+        {
+            if(inventoryItems.Count > itemIndex)
+            {
+                if (inventoryItems[itemIndex].IsEmpty)
+                    return;
+                int leftOver = inventoryItems[itemIndex].quantity - amount;
+                if (leftOver <= 0)
+                {
+                    inventoryItems[itemIndex] = InventoryItem.GetEmptyItem();
+                }
+                else
+                {
+                    inventoryItems[itemIndex] = inventoryItems[itemIndex]
+                        .ChangeQuantity(leftOver);
+                }
+                InformAboutChange();
+            }
+        }
     }
 
     [Serializable]

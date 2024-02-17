@@ -9,13 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 219fff30cc48bf748bd093ed04088e02, type: 3}
+  m_Script: {fileID: 11500000, guid: 17992b6f1321acc4a9f08aa2289c3122, type: 3}
   m_Name: Kiwi
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
-  <MaxStackSize>k__BackingField: 99
+  <MaxStackSize>k__BackingField: 50
   <Name>k__BackingField: Kiwi
-  <Description>k__BackingField: edible berry of several species of woody vines in
-    the genus Actinidia.
+  <Description>k__BackingField: Yummy yummy fruities. +25 Health
   <Icon>k__BackingField: {fileID: -6984240615878570876, guid: 328c6e2aaf4ab49448fe3c91f6619970,
     type: 3}
+  modiferData:
+  - statModifier: {fileID: 11400000, guid: 950e9d4409ff08e46836f532a85c045a, type: 2}
+    value: 25
