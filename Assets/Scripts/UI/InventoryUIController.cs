@@ -18,6 +18,12 @@ namespace Inventory
 
         public List<InventoryItem> initialItems = new List<InventoryItem>();
 
+        [SerializeField]
+        private AudioClip dropClip;
+
+        [SerializeField]
+        private AudioClip audioSource;
+
         private void Start()
         {
             PrepareInventoryUI();
@@ -67,15 +73,50 @@ namespace Inventory
             if (inventoryItem.IsEmpty)
                 return;
             IItemAction itemAction = inventoryItem.item as IItemAction;
-            if(itemAction != null)
+            if (itemAction != null)
             {
-               // Add a way to not delete Equipable Gear on equip
+                // Add a way to not delete Equipable Gear on equip
+                inventoryUI.ShowItemAction(itemIndex);
+                inventoryUI.AddAction(itemAction.ActionName, () => PerformAction(itemIndex));
+                
+            }
+
+            IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
+            if (destroyableItem != null)
+            {
+                inventoryUI.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.quantity));
+                //audioSource.PlayOneShot(itemAction.actionSFX);
+            }
+        }
+
+        private void DropItem(int itemIndex, int quantity)
+        {
+            inventoryData.RemoveItem(itemIndex, quantity);
+            inventoryUI.ResetSelection();
+            //audioSource.PlayOneShot(dropClip);
+        }
+
+        public void PerformAction(int itemIndex)
+        {
+
+            InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
+            if (inventoryItem.IsEmpty)
+                return;
+            IItemAction itemAction = inventoryItem.item as IItemAction;
+            if (itemAction != null)
+            {
+                // Add a way to not delete Equipable Gear on equip
                 if (itemAction.PerformAction(gameObject, inventoryItem.itemState))
                 {
                     IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
                     if (destroyableItem != null)
                     {
-                        inventoryData.RemoveItem(itemIndex, 1);                    }
+                        inventoryData.RemoveItem(itemIndex, 1);
+                    }
+                }
+                if(inventoryData.GetItemAt(itemIndex).IsEmpty)
+                {
+                    inventoryUI.ResetSelection();
                 }
             }
         }

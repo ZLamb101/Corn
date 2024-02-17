@@ -251,6 +251,7 @@ GameObject:
   - component: {fileID: 6093030800285347664}
   - component: {fileID: 5039928315274295587}
   - component: {fileID: 317034007751637654}
+  - component: {fileID: 7034983194324657343}
   m_Layer: 13
   m_Name: Player
   m_TagString: Player
@@ -766,3 +767,23 @@ MonoBehaviour:
   inventoryUI: {fileID: 0}
   inventoryData: {fileID: 0}
   initialItems: []
+  dropClip: {fileID: 0}
+  audioSource: {fileID: 0}
+--- !u!114 &7034983194324657343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7898001557041317330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db218a7b2be540f46bb801fe06515cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
+  inventoryData: {fileID: 11400000, guid: 57d4a28362b33464aac2c53a9172be72, type: 2}
+  parametersToModify:
+  - itemParameter: {fileID: 11400000, guid: 1e74bfaa79c6c5749853a79abc20a39b, type: 2}
+    value: -10
+  itemCurrentState: []
