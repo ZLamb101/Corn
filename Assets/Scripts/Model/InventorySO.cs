@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace Inventory.Model
 {
@@ -160,7 +161,17 @@ namespace Inventory.Model
                 InformAboutChange();
             }
         }
+
+        public GameObject GetItem(int itemIndex, int quantity = 1)
+        {
+            string itemName = inventoryItems[itemIndex].item.name;
+            GameObject itemToDrop = GameObject.Find(itemName);
+            itemToDrop.GetComponent<ItemDrop>().Quantity = quantity;
+            return itemToDrop;
+        }
     }
+     
+    
 
     [Serializable]
     public struct InventoryItem

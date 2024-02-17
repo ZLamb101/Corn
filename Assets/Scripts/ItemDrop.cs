@@ -8,7 +8,7 @@ public class ItemDrop : MonoBehaviour
 {
     [field:SerializeField]
     public ItemSO InventoryItem { get; private set; }
-    [SerializeField]
+    [field:SerializeField]
     public int Quantity { get; set; } = 1;
 
     [SerializeField]

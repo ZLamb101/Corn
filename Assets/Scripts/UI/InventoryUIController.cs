@@ -5,6 +5,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
+using static UnityEngine.EventSystems.EventTrigger;
+using Unity.VisualScripting;
+using static DropTable;
+using System.Linq;
 
 namespace Inventory
 {
@@ -91,9 +95,18 @@ namespace Inventory
 
         private void DropItem(int itemIndex, int quantity)
         {
+            SpawnItem(itemIndex, quantity);
             inventoryData.RemoveItem(itemIndex, quantity);
             inventoryUI.ResetSelection();
+
             //audioSource.PlayOneShot(dropClip);
+        }
+
+        private void SpawnItem(int itemIndex, int quantity)
+        {  
+            GameObject itemDropped = Instantiate(inventoryData.GetItem(itemIndex,quantity),
+                                                transform.position, Quaternion.identity);
+            itemDropped.transform.parent = GameObject.Find("LootManager").transform;
         }
 
         public void PerformAction(int itemIndex)
