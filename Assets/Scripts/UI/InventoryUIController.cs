@@ -49,6 +49,11 @@ namespace Inventory
 
         private void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)
         {
+            if (inventoryUI == null)
+            {
+                Debug.LogError("Inventory UI is null");
+                return;
+            }
             inventoryUI.ResetAllItems();
             foreach (var item in inventoryState)
             {

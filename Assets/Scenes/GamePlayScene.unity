@@ -3934,40 +3934,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effector: {fileID: 0}
   waitTime: 0.5
---- !u!1 &492733079 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4025992973098338258, guid: b8a405f9be4c5904a92c5c9e87afbea0,
+--- !u!114 &492733081 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2448921591594276827, guid: b8a405f9be4c5904a92c5c9e87afbea0,
     type: 3}
   m_PrefabInstance: {fileID: 5956531642728616274}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &492733081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 492733079}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e581a7b7bdc9e004b85b574ae455bc67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
-  item: {fileID: 0}
---- !u!114 &492733082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 492733079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -14394,6 +14372,36 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40
       objectReference: {fileID: 0}
+    - target: {fileID: 3617267977505282238, guid: b8a405f9be4c5904a92c5c9e87afbea0,
+        type: 3}
+      propertyPath: m_Spacing.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617267977505282238, guid: b8a405f9be4c5904a92c5c9e87afbea0,
+        type: 3}
+      propertyPath: m_Spacing.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617267977505282238, guid: b8a405f9be4c5904a92c5c9e87afbea0,
+        type: 3}
+      propertyPath: m_CellSize.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617267977505282238, guid: b8a405f9be4c5904a92c5c9e87afbea0,
+        type: 3}
+      propertyPath: m_CellSize.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617267977505282238, guid: b8a405f9be4c5904a92c5c9e87afbea0,
+        type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617267977505282238, guid: b8a405f9be4c5904a92c5c9e87afbea0,
+        type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3711097428586459988, guid: b8a405f9be4c5904a92c5c9e87afbea0,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -15446,14 +15454,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5956531642728616279}
-    - targetCorrespondingSourceObject: {fileID: 4025992973098338258, guid: b8a405f9be4c5904a92c5c9e87afbea0,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 492733082}
-    - targetCorrespondingSourceObject: {fileID: 4025992973098338258, guid: b8a405f9be4c5904a92c5c9e87afbea0,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 492733081}
   m_SourcePrefab: {fileID: 100100000, guid: b8a405f9be4c5904a92c5c9e87afbea0, type: 3}
 --- !u!114 &5956531642728616275 stripped
 MonoBehaviour:

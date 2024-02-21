@@ -37,6 +37,12 @@ public class EquipmentUIController : MonoBehaviour
 
     private void UpdateEquipmentUI(Dictionary<int, EquipmentItem> inventoryState)
     {
+        if(equipmentUI == null)
+        {
+            Debug.LogError("Equipment UI is null");
+            return;
+        }
+            
         equipmentUI.ResetAllItems();
         foreach (var item in inventoryState)
         {
