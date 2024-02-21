@@ -18,6 +18,8 @@ MonoBehaviour:
   <Description>k__BackingField: Yummy yummy fruities. +25 Health
   <Icon>k__BackingField: {fileID: -6984240615878570876, guid: 328c6e2aaf4ab49448fe3c91f6619970,
     type: 3}
+  <DefaultParametersList>k__BackingField: []
+  equipmentSlot: 10
   modiferData:
   - statModifier: {fileID: 11400000, guid: 950e9d4409ff08e46836f532a85c045a, type: 2}
     value: 25

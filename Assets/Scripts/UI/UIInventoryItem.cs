@@ -33,7 +33,11 @@ namespace Inventory.UI
 
         public void ResetData()
         {
-
+            if(itemImage == null)
+            {
+                //already Inactive
+                return;
+            }
             itemImage.gameObject.SetActive(false);
             empty = true;
         }

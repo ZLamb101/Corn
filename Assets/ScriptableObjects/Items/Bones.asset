@@ -19,4 +19,5 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: -1015993518757655081, guid: b0eb4044a65374347a3cca9ba3bf434b,
     type: 3}
   <DefaultParametersList>k__BackingField: []
+  equipmentSlot: 10
   modiferData: []

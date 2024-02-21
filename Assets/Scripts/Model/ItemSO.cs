@@ -27,6 +27,23 @@ namespace Inventory.Model
 
         [field: SerializeField]
         public List<ItemParameter> DefaultParametersList { get; private set; }
+
+        public enum ItemType
+        {
+            Head,
+            Shoulders,
+            Chest,
+            Legs,
+            Feet,
+            Hands,
+            Weapon,
+            Shield,
+            Necklace,
+            Ring,
+            Other
+        }
+
+        public ItemType equipmentSlot;
     }
 
     [Serializable]

@@ -7,19 +7,6 @@ namespace Inventory.Model
     [CreateAssetMenu]
     public class EquippableItemSO : ItemSO, IDestroyableItem, IItemAction
     {
-       /* public enum EquipmentSlot
-        {
-            Head,
-            Chest,
-            Legs,
-            Feet,
-            Hands,
-            Weapon,
-            Shield,
-            Accessory
-        }
-
-        public EquipmentSlot equipmentSlot;*/
  
         public string ActionName => "Equip";
 
@@ -27,7 +14,7 @@ namespace Inventory.Model
 
         public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
-            AgentWeapon weaponSystem = character.GetComponent<AgentWeapon>();
+            EquipmentUIController weaponSystem = character.GetComponent<EquipmentUIController>();
             if (weaponSystem == null)
             {
                 return false;

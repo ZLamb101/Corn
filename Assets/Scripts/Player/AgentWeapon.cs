@@ -18,9 +18,10 @@ public class AgentWeapon : MonoBehaviour
 
     public void SetWeapon(EquippableItemSO weaponItemSO, List<ItemParameter> itemState)
     {
+        Debug.Log("I shouldnt be Here!");
         if(weapon != null)
         {
-            inventoryData.AddItem(weapon, 1, itemCurrentState);
+            //inventoryData.EquipItem(weapon, 1, itemCurrentState);
         }
 
         this.weapon = weaponItemSO;
