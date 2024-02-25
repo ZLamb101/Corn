@@ -162,11 +162,10 @@ namespace Inventory.Model
             }
         }
 
-        public GameObject GetItem(int itemIndex, int quantity = 1)
+        public GameObject GetItem(int itemIndex)
         {
             string itemName = inventoryItems[itemIndex].item.name;
-            GameObject itemToDrop = GameObject.Find(itemName);
-            itemToDrop.GetComponent<ItemDrop>().Quantity = quantity;
+            GameObject itemToDrop = (GameObject)Resources.Load("Objects/"+itemName);
             return itemToDrop;
         }
     }

@@ -76,7 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: -888973317
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 42820af2772f24bda991ed7de294c2fd, type: 3}
+  m_Sprite: {fileID: 5380356911476489250, guid: d981db5568729124c95d187a2e3f2776,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,18 +147,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009211794, y: 0.0044236295}
+  m_Offset: {x: 0.0040913373, y: 0.19289066}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.18, y: 0.2}
+    pivot: {x: 0.46875, y: -0.027027026}
+    oldSize: {x: 0.16, y: 0.37}
     newSize: {x: 0.64, y: 0.37}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.26229987, y: 0.24062777}
+  m_Size: {x: 0.15586981, y: 0.37809804}
   m_EdgeRadius: 0
 --- !u!114 &8873553285972731588
 MonoBehaviour:
@@ -173,4 +174,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InventoryItem>k__BackingField: {fileID: 11400000, guid: 6ae19748aa9ab2a4c9717cf64088e5ef,
     type: 2}
+  <Quantity>k__BackingField: 1
   duration: 0.3

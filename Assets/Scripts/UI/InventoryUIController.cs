@@ -102,10 +102,12 @@ namespace Inventory
         }
 
         private void SpawnItem(int itemIndex, int quantity)
-        {  
-            GameObject itemDropped = Instantiate(inventoryData.GetItem(itemIndex,quantity),
-                                                transform.position, Quaternion.identity);
+        {
+             //GameObject itemDropped = Instantiate(inventoryData.GetItem(itemIndex,quantity),
+            //                                     transform.position, Quaternion.identity);
+            GameObject itemDropped = Instantiate(inventoryData.GetItem(itemIndex, quantity), transform.position, Quaternion.identity) as GameObject;
             itemDropped.transform.parent = GameObject.Find("LootManager").transform;
+            itemDropped.GetComponent<ItemDrop>().Quantity = quantity;
         }
 
         public void PerformAction(int itemIndex)

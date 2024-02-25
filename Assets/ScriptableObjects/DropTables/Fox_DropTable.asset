@@ -15,5 +15,5 @@ MonoBehaviour:
   entries:
   - item: {fileID: 6092356922798182026, guid: 1583bae5a1d8a8f4d8f3ec10d40a11d9, type: 3}
     dropRate: 1
-  - item: {fileID: 4802402960277562104, guid: 00bd6eb785a020e47b9d7be9c091997b, type: 3}
+  - item: {fileID: 6092356922798182026, guid: b9bc9c570fe915749a36849651cd4fb3, type: 3}
     dropRate: 0.275
