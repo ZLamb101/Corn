@@ -102,7 +102,7 @@ public class ItemPickupManager : MonoBehaviour
                     int remainder = inventoryData.AddItem(item.InventoryItem, item.Quantity);
                     if (remainder == 0)
                     {
-                        Debug.Log("Destroying item");
+                        //Debug.Log("Destroying item");
                         item.DestroyItem();
                     }
                     else
