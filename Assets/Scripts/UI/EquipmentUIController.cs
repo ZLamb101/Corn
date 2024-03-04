@@ -35,7 +35,7 @@ public class EquipmentUIController : MonoBehaviour
         }
     }
 
-    private void UpdateEquipmentUI(Dictionary<int, EquipmentItem> inventoryState)
+    private void UpdateEquipmentUI(Dictionary<int, EquipmentItem> equipmentState)
     {
         if(equipmentUI == null)
         {
@@ -44,7 +44,7 @@ public class EquipmentUIController : MonoBehaviour
         }
             
         equipmentUI.ResetAllItems();
-        foreach (var item in inventoryState)
+        foreach (var item in equipmentState)
         {
             equipmentUI.UpdateData(item.Key, item.Value.item.Icon);
         }

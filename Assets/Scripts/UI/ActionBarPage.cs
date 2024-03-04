@@ -7,7 +7,7 @@ using UnityEngine;
 public class ActionBarPage : MonoBehaviour
 {
     [SerializeField]
-    private UIActionBarSlot itemPrefab;
+    private UIActionBarSlot skillPrefab;
 
 /*    [SerializeField]
     private UIActionBarDescription SpellDescription;*/
@@ -25,8 +25,8 @@ public class ActionBarPage : MonoBehaviour
 
     public event Action<int, int> OnSwapItems;
 
- /*   [SerializeField]
-    private ItemActionPanel actionPanel;*/
+   [SerializeField]
+    private RectTransform actionPanel;
 
 
     private void Awake()
@@ -35,17 +35,25 @@ public class ActionBarPage : MonoBehaviour
         //itemDescription.ResetDescription();
     }
 
-    public void InitializeActionBarUI(int inventorySize)
+    public void InitializeActionBarUI(int actionBarSize)
     {
-        for (int i = 0; i < inventorySize; i++)
+        for (int i = 0; i < actionBarSize; i++)
         {
-           // UIActionBarSlot newItem = Instantiate(itemPrefab, contentPanel);
-            /*listOfUIItems.Add(newItem);
+             UIActionBarSlot newItem = Instantiate(skillPrefab, actionPanel);
+            listOfUIItems.Add(newItem);
             newItem.OnItemClicked += HandleItemSelection;
             newItem.OnItemBeginDrag += HandleBeginDrag;
             newItem.OnItemDroppedOn += HandleSwap;
             newItem.OnItemEndDrag += HandleEndDrag;
-            newItem.OnRightMouseBtnClick += HandleRightClick;*/
+            newItem.OnRightMouseBtnClick += HandleRightClick;
+        }
+    }
+
+    public void UpdateData(int itemIndex, Sprite itemImage)
+    {
+        if (listOfUIItems.Count > itemIndex)
+        {
+            listOfUIItems[itemIndex].SetData(itemImage, 1);
         }
     }
 

@@ -12,7 +12,7 @@ public class ActionBarUIController : MonoBehaviour
     [SerializeField]
     private ActionBarSO actionBarData;
 
-    public List<ActionSlot> initialSpells = new List<ActionSlot>();
+    public List<ActionSlot> initialSpells = new List<ActionSlot>(7);
 
     private void Start()
     {
@@ -23,28 +23,29 @@ public class ActionBarUIController : MonoBehaviour
     private void PrepareActionBarData()
     {
         actionBarData.Initialize();
-       // actionBarData.OnActionBarChanged += UpdateActionBarUI;
+        //actionBarData.OnActionBarChanged += UpdateActionBarUI;
 
-        foreach (ActionSlot item in initialSpells)
+        foreach (ActionSlot skill in initialSpells)
         {
-            if (item.IsEmpty)
+            if (skill.IsEmpty)
                 continue;
 
-           // actionBarData.EquipItem(item);
+           actionBarData.AddSkill(skill);
         }
+
     }
 
-    private void UpdateActionBarUI(Dictionary<int, InventoryItem> inventoryState)
+    private void UpdateActionBarUI(Dictionary<int, ActionSlot> actionBarState)
     {
         if (actionBarUI == null)
         {
-            Debug.LogError("Inventory UI is null");
+            Debug.LogError("actionBarState UI is null");
             return;
         }
         //actionBarUI.ResetAllItems();
-        foreach (var item in inventoryState)
+        foreach (var item in actionBarState)
         {
-            //actionBarUI.UpdateData(item.Key, item.Value.item.Icon, item.Value.quantity);
+            actionBarUI.UpdateData(item.Key, item.Value.skill.Icon);
         }
     }
 
@@ -84,7 +85,7 @@ public class ActionBarUIController : MonoBehaviour
             //actionBarUI.ResetSelection();
             return;
         }
-        SpellSO item = inventoryItem.item;
+        SpellSO item = inventoryItem.skill;
       /*  string description = PrepareDescription(inventoryItem);
         actionBarUI.UpdateDescription(itemIndex, item.Icon, item.name, description);*/
     }

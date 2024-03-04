@@ -30,27 +30,77 @@ namespace ActionBar.Model
         {
             return actionBarSpells[slotIndex];
         }
+
+        internal bool AddSkill(ActionSlot actionSlot)
+        {
+            for (int i = 0; i < Size; i++)
+            {
+                if (!actionBarSpells[i].IsEmpty)
+                {
+                    //inventoryData.AddItem(equippedItems[i].item, 1, itemState);
+                    //equippedItems[i] = EquipmentItem.GetEmptyItem();
+                }
+                AddSkillToActionSlot(actionSlot.skill);
+                InformAboutChange();
+                return true;
+            }
+            return false;
+        }
+
+        private void AddSkillToActionSlot(SpellSO skill)
+        {
+            for (int i = 0; i < actionBarSpells.Count; i++)
+            {
+                if (actionBarSpells[i].IsEmpty)
+                {
+                    actionBarSpells[i] = new ActionSlot
+                    {
+                        skill = skill
+                    };
+                    return;
+                }
+            }
+        }
+
+        private void InformAboutChange()
+        {
+            OnActionBarChanged?.Invoke(GetCurrentActionBarState());
+        }
+
+        public Dictionary<int, ActionSlot> GetCurrentActionBarState()
+        {
+            Dictionary<int, ActionSlot> returnValue =
+                new Dictionary<int, ActionSlot>();
+
+            for (int i = 0; i < actionBarSpells.Count; i++)
+            {
+                if (actionBarSpells[i].IsEmpty)
+                    continue;
+                returnValue[i] = actionBarSpells[i];
+            }
+            return returnValue;
+        }
     }
 
     [Serializable]
     public struct ActionSlot
     {
         public int cooldown;
-        public SpellSO item;
-        public bool IsEmpty => item == null;
+        public SpellSO skill;
+        public bool IsEmpty => skill == null;
 
         public ActionSlot ChangeQuantity()
         {
             return new ActionSlot
             {
-                item = this.item
+                skill = this.skill
             };
         }
 
         public static ActionSlot GetEmptyItem()
             => new ActionSlot
             {
-                item = null,
+                skill = null,
             };
     }
 }

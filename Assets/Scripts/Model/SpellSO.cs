@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ActionBar.Model
 {
+    [CreateAssetMenu]
     public class SpellSO : ScriptableObject
     {
         public int ID => GetInstanceID();
